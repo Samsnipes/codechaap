@@ -1,0 +1,150 @@
+// Menu-driven program to perform operations on strings.
+#include <stdio.h>
+
+void printStringLength(char str[]) {
+    int length = 0;
+    while (str[length] != '\0') {
+        length++;
+    }
+    printf("Length of the string: %d\n", length);
+}
+
+void reverseString(char str[]) {
+    int length = 0, i;
+    char reversed[100];
+
+    while (str[length] != '\0') {
+        length++;
+    }
+
+    for (i = 0; i < length; i++) {
+        reversed[i] = str[length - i - 1];
+    }
+    reversed[length] = '\0';
+
+    printf("Reversed string: %s\n", reversed);
+}
+
+void copyString(char str[]) {
+    char copy[100];
+    int i = 0;
+
+    while (str[i] != '\0') {
+        copy[i] = str[i];
+        i++;
+    }
+    copy[i] = '\0';
+
+    printf("Original String: %s\n", str);
+    printf("Copied String: %s\n", copy);
+}
+
+void compareStrings(char str1[], char str2[]) {
+    int i = 0;
+    while (str1[i] != '\0' && str2[i] != '\0') {
+        if (str1[i] != str2[i]) {
+            if (str1[i] < str2[i]) {
+                printf("\"%s\" is smaller than \"%s\"\n", str1, str2);
+                return;
+            } else {
+                printf("\"%s\" is greater than \"%s\"\n", str1, str2);
+                return;
+            }
+        }
+        i++;
+    }
+
+    if (str1[i] == '\0' && str2[i] == '\0') {
+        printf("\"%s\" and \"%s\" are equal\n", str1, str2);
+    } else if (str1[i] == '\0') {
+        printf("\"%s\" is smaller than \"%s\"\n", str1, str2);
+    } else {
+        printf("\"%s\" is greater than \"%s\"\n", str1, str2);
+    }
+}
+
+void concatenateStrings(char str1[], char str2[]) {
+    char concatenated[200];
+    int i = 0, j = 0;
+
+    while (str1[i] != '\0') {
+        concatenated[i] = str1[i];
+        i++;
+    }
+
+    while (str2[j] != '\0') {
+        concatenated[i] = str2[j];
+        i++;
+        j++;
+    }
+    concatenated[i] = '\0';
+
+    printf("Concatenated string: %s\n", concatenated);
+}
+
+int main() {
+    int choice;
+    char str1[100], str2[100];
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Print String Length\n");
+        printf("2. Print String in Reverse Order\n");
+        printf("3. Copy Given String\n");
+        printf("4. Compare Two Strings\n");
+        printf("5. Concatenate Two Strings\n");
+        printf("6. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        
+
+
+
+
+ 	switch (choice) {
+            case 1:
+                printf("Enter a string: ");
+                scanf("%s", str1);
+                printStringLength(str1);
+                break;
+
+            case 2:
+                printf("Enter a string: ");
+                scanf("%s", str1);
+                reverseString(str1);
+                break;
+
+            case 3:
+                printf("Enter a string: ");
+                scanf("%s", str1);
+                copyString(str1);
+                break;
+
+            case 4:
+                printf("Enter first string: ");
+                scanf("%s", str1);
+                printf("Enter second string: ");
+                scanf("%s", str2);
+                compareStrings(str1, str2);
+                break;
+
+            case 5:
+                printf("Enter first string: ");
+                scanf("%s", str1);
+                printf("Enter second string: ");
+                scanf("%s", str2);
+                concatenateStrings(str1, str2);
+                break;
+
+            case 6:
+                printf("Exiting program.\n");
+                break;
+
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    } while (choice != 6);
+
+    return 0;
+}
