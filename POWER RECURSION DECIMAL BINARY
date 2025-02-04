@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+// Function to calculate power using recursion
+int power(int base, int exp) {
+    if (exp == 0)
+        return 1;
+    return base * power(base, exp - 1);
+}
+
+// Function to check if a number is prime
+int isPrime(int num) {
+    if (num < 2) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+// Function to display prime numbers in an interval
+void displayPrimes(int start, int end) {
+    printf("Prime numbers between %d and %d are: ", start, end);
+    for (int i = start; i <= end; i++) {
+        if (isPrime(i))
+            printf("%d ", i);
+    }
+    printf("\n");
+}
+
+// Function to convert decimal to binary
+void decimalToBinary(int num) {
+    if (num > 1)
+        decimalToBinary(num / 2);
+    printf("%d", num % 2);
+}
+
+int main() {
+    int choice, base, exp, start, end, num;
+    do {
+        printf("\nMenu:\n");
+        printf("1. Calculate power using recursion\n");
+        printf("2. Display all prime numbers between two intervals\n");
+        printf("3. Convert decimal to binary\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter base and exponent: ");
+                scanf("%d %d", &base, &exp);
+                printf("Result: %d\n", power(base, exp));
+                break;
+            case 2:
+                printf("Enter two numbers (start and end): ");
+                scanf("%d %d", &start, &end);
+                displayPrimes(start, end);
+                break;
+            case 3:
+                printf("Enter a decimal number: ");
+                scanf("%d", &num);
+                printf("Binary representation: ");
+                decimalToBinary(num);
+                printf("\n");
+                break;
+            case 4:
+                printf("Exiting program.\n");
+                break;
+            default:
+                printf("Invalid choice, please try again.\n");
+        }
+    } while (choice != 4);
+    return 0;
+}
